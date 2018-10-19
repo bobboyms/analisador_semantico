@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1.0" />
+<title>Analizador de Texto</title>
+
+<!-- CSS  -->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
+<link href="{{ url_for('static',filename='css/style.css') }}"
+	type="text/css" rel="stylesheet" media="screen,projection" />
+</head>
+
+<body>
+
+	<!-- -->
+	<div class="section no-pad-bot" id="index-banner">
+
+	{% block principal %} 
+	{% endblock %}
+
+	{% block analise %} 
+	{% endblock %}
+	
+	{% block analise_especifica %} 
+	{% endblock %}
+	
+	{% block editor %} 
+	{% endblock %}
+
+
+	<footer class="page-footer orange">
+
+		<div class="footer-copyright">
+			<div class="container">
+				:) <a class="orange-text text-lighten-3"
+					href="https://eticosoftware.com.br/">Ético</a>
+			</div>
+		</div>
+	</footer>
+
+
+	<!--  Scripts-->
+	<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
+	<script src="{{ url_for('static',filename='js/init.js') }}"></script>
+
+</body>
+
+</html>

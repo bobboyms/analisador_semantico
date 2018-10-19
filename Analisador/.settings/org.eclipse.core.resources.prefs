@@ -1,0 +1,13 @@
+eclipse.preferences.version=1
+encoding//app/controllers/__init__.py=utf-8
+encoding//app/controllers/default.py=utf-8
+encoding//app/regras_de_negocio/__init__.py=utf-8
+encoding//app/templates/analisar_texto.html=UTF-8
+encoding//app/templates/analise.html=UTF-8
+encoding//app/templates/analise_especifica_palavra.html=UTF-8
+encoding//app/templates/menu.html=UTF-8
+encoding//app/templates/principal.html=UTF-8
+encoding//teste/teste.py=utf-8
+encoding//verifica_artigo/__init__.py=utf-8
+encoding//verifica_artigo/busca_artigos.py=utf-8
+encoding/run.py=UTF-8

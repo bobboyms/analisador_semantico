@@ -1,0 +1,26 @@
+{% extends 'base.html' %} {% block principal %}
+<div class="section no-pad-bot" id="index-banner">
+	<form method="POST" action="">
+		{{ form.csrf_token }}
+		<div class="container">
+			<br> <br>
+			<h1 class="header center orange-text">Analisador de Texto</h1>
+			<div class="row center">
+				<h5 class="header col s12 light">Informe abaixo o link do seu
+					texto e a palavra chave dele</h5>
+			</div>
+			<div class="row">
+				<div class="input-field col s12">
+					{{ form.palavra_chave() }} <label class="active" for="palavra_chave">Digite uma Palavra Chave</label>
+				</div>
+			</div>
+			<div class="row center">
+				<button type="submit" class="btn-large waves-effect waves-light orange">ANALISAR</button>
+			</div>
+			<br> <br>
+
+		</div>
+	</form>
+</div>
+{% endblock %}
+
