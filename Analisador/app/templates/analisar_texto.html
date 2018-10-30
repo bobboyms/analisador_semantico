@@ -39,6 +39,7 @@
 						<table class="responsive-table centered">
 							<thead>
 								<tr role="row">
+									<th></th>
 									<th>Densidade média</th>
 									<th>Distancia média</th>
 									<th>Quantidade de palavras</th>
@@ -47,18 +48,46 @@
 							</thead>
 							<tbody>
 								<tr role="row" class="odd">
+									<td class="right"><b>VOCÊ</b></td>
 									<td>{{ meu_densidade_media_de_palavra_chave }}</td>
 									<td>{{ meu_distancia_media_palavra_chave }}</td>
 									<td>{{ meu_quantidade_media_palavras_para_texto }}</td>
 									<td>{{ meu_similaridade_media_documento }}</td>
 								</tr>
 								<tr role="row" class="odd">
+									<td class="right"><b>CONCORRENTES</b></td>
 									<td>{{ densidade_media_de_palavra_chave }}</td>
 									<td>{{ distancia_media_palavra_chave }}</td>
 									<td>{{ quantidade_media_palavras_para_texto }}</td>
 									<td>{{ similaridade_media_documento }}</td>
 								</tr>
 
+							</tbody>
+						</table>
+						
+						<h4 class="center">PRINCIPAIS PALAVRAS DO TEXTO E SEU USO</h4>
+						
+						<table class="responsive-table centered">
+							<thead>
+								<tr role="row">
+									<th>Palavra</th>
+									<th>Quantidade</th>
+									<th>Similaridade</th>
+									<th>Usada no texto?</th>
+								</tr>
+							</thead>
+							<tbody>
+							
+							{% for lista in listas %}
+							
+								<tr role="row" class="odd">
+									<td><a href="/verificar/palavra/{{ palavra_chave }}/{{ lista[0] }}">{{ lista[0] }}</a></td>
+									<td>{{ lista[1] }}</td>
+									<td>{{ lista[2] }}</td>
+									<td>{{ lista[3] }}</td>
+								</tr>
+							{% endfor %}
+							
 							</tbody>
 						</table>
 

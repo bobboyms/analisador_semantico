@@ -80,6 +80,9 @@ def analisar_texto():
         url = formulario_texto.texto.data
         meu_site = Sites(palavra_chave=chave, urls=[url])
         sites = obter_site(chave) 
+
+        
+        
         return render_template("analisar_texto.html", form=formulario_texto,tem_informacoes=True,
                             meu_densidade_media_de_palavra_chave=meu_site.obter_densidade_media_de_palavra_chave(),
                             meu_distancia_media_palavra_chave=meu_site.obter_distancia_media_palavra_chave(),
@@ -88,10 +91,22 @@ def analisar_texto():
                             densidade_media_de_palavra_chave=sites.obter_densidade_media_de_palavra_chave(),
                             distancia_media_palavra_chave=sites.obter_distancia_media_palavra_chave(),
                             quantidade_media_palavras_para_texto=sites.obter_quantidade_media_palavras_para_texto(),
-                            similaridade_media_documento=sites.obter_similaridade_media_documento())
+                            similaridade_media_documento=sites.obter_similaridade_media_documento(),
+                            listas=obter_lista_palavras_usadas(meu_site,sites),
+                            palavra_chave=chave)
         
     return render_template("analisar_texto.html", form=formulario_texto)
-#                            densidade_media_de_palavra_chave=meu_site.obter_densidade_media_de_palavra_chave(),
-#                            distancia_media_palavra_chave=meu_site.obter_distancia_media_palavra_chave(),
-#                            quantidade_media_palavras_para_texto=meu_site.obter_quantidade_media_palavras_para_texto(),
-#                            similaridade_media_documento=meu_site.obter_similaridade_media_documento())
+
+def obter_lista_palavras_usadas(meu_site, sites):
+
+    palavras = meu_site.obter_palavras_sem_stopwords()
+    
+    lista = []
+    for palavra in sites.obter_frequencia_com_maior_similaridade():
+        
+        if palavra[0] in palavras:
+            lista.append([palavra[0],palavra[1],palavra[2],"SIM"])
+        else:
+            lista.append([palavra[0],palavra[1],palavra[2],"NÃO"])
+
+    return lista

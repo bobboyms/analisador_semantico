@@ -285,6 +285,28 @@ class Sites(object):
         return set(self.urls)
     
     """
+    Obtem as palavras com mair similaridade com a palavra chave
+    """
+    def obter_frequencia_com_maior_similaridade(self, total=50, valor_similaridade=0.4):
+        
+        lista_dados = []
+        
+        doc_chave = nlp(self.palavra_chave)
+        
+        for palavra, frequencia in self.obter_frequencia_palavras_stopwords(total):
+            doc_palavra = nlp(palavra)
+            if palavra not in self.palavra_chave and len(palavra) > 3:
+                similaridade = doc_chave.similarity(doc_palavra)
+                
+                frequencia = round(frequencia / len(self.sites))
+                
+                if similaridade > valor_similaridade:
+                    lista_dados.append([palavra, frequencia, float(round(similaridade, 2))])
+        
+        return lista_dados
+    
+    
+    """
     Concatena os textos de todos os artigos indexados
     """
 
@@ -366,18 +388,22 @@ class Sites(object):
         
         contador = 0
         for url in urls:
-            print("URL %s" % url)
-            sopa = self.obter_sopa_site(url)
-            artigo = sopa.find("body")
-            if artigo != None:
-                ps = artigo.find_all("p")
-                if ps != None and len(ps) > 10:
-                    site = Site(sopa, url, self.palavra_chave)
-                    if self.palavra_chave in site.obter_artigo_texto():
-                        self.sites.append(site)
-                        contador += 1
-                        if contador == 5:
-                            break
+            
+            try:
+                print("URL %s" % url)
+                sopa = self.obter_sopa_site(url)
+                artigo = sopa.find("body")
+                if artigo != None:
+                    ps = artigo.find_all("p")
+                    if ps != None and len(ps) > 10:
+                        site = Site(sopa, url, self.palavra_chave)
+                        if self.palavra_chave in site.obter_artigo_texto():
+                            self.sites.append(site)
+                            contador += 1
+                            if contador == 5:
+                                break
+            except:
+                continue
 #             else:
 #                 artigo = sopa.find(class_="content")
 #                 if artigo != None:
