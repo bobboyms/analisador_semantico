@@ -1,3 +1,2 @@
-FreqDist
 sent_tokenize
 word_tokenize
