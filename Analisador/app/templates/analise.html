@@ -1,226 +1,153 @@
-{% extends 'base.html' %} 
-{% block analise %}
-
-{% include 'menu.html' %}
-
-<!-- 
-
-<div class="container">
-	<br>
-	<div class="row center">
-		<h5 class="header col s12 light">Verifique as informações do seu
-			artigo</h5>
-	</div>
-	<div class="row">
-		<div class="col s12 m6">
-			<div class="row">
-				<h6>URL:</h6>
-				<p>www.bananamaca.com</p>
-			</div>
-			<div class="row">
-				<h6>Palavra chave:</h6>
-				<p>banana maça</p>
-			</div>
-		</div>
-		<div class="col s12 m6">
-			<div class="collection">
-				<a class="collection-item black-text text-darken-2"> <span
-					class="badge"> <i class="yellow-text tiny material-icons">done</i>
-				</span>Meu Artigo
-					<div class="progress">
-						<div class="determinate blue" style="width: 80%"></div>
-					</div>
-				</a> <a class="collection-item black-text text-darken-2">
-					Concorrente 1
-					<div class="progress">
-						<div class="determinate red" style="width: 80%"></div>
-					</div>
-				</a>
-			</div>
-		</div>
-	</div>
-	<br>
-</div>
-</div>
--->
+{% extends 'base.html' %} {% block analise %}
 <!-- inicio -->
-<div class="">
-	<div class="section">
-
-		<!--   Icon Section   -->
-		<div class="row">
-			<div class="col s12 m12">
-				<div class="icon-block">
-					<ul class="collapsible">
-						<li>
-							<div class="collapsible-header">
-								<i class="material-icons Small">book</i> Informação 1 <span
-									class="new badge">1</span>
-							</div>
-							<div class="collapsible-body">
-								<table class="responsive-table centered">
-									<thead>
-										<tr role="row">
-											<th>Densidade média</th>
-											<th>Distancia média</th>
-											<th>Quantidade de palavras</th>
-											<th>Similaridade</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr role="row" class="odd">
-											<td>{{ densidade_media_de_palavra_chave }}</td>
-											<td>{{ distancia_media_palavra_chave }}</td>
-											<td>{{ quantidade_media_palavras_para_texto }}</td>
-											<td>{{ similaridade_media_documento }}</td>
-										</tr>
-									</tbody>
-								</table>
-
-							</div>
-						</li>
-
-					</ul>
-				</div>
-			</div>
-			<!-- BLOCO DE CONCORRENTES -->
-
-			{% for site in sites %}
-
-			<div class="col s12 m4">
-				<div class="icon-block">
-					<ul class="collapsible">
-						<li>
-							<div class="collapsible-header">
-								<i class="material-icons Small">book</i> 
-								Titulo: {{ site.obter_titulo_h1() }}
-								{{ site.url }}
-								distancia media : {{ site.obter_distancia_media_palavra_chave()
-								}} similaridade : {{ site.obter_similaridade_geral_do_texto() }}
-								total de palavras : {{ site.obter_total_de_palavras() }}
-								Densidade da chave : {{ site.obter_densidade_da_palavra_chave() }}
-							</div>
-							<div class="collapsible-body">
-								<table class="responsive-table centered">
-									<thead>
-										<tr role="row">
-											<th>Palavra</th>
-											<th>Frequencia</th>
-											<th>Similaridade</th>
-										</tr>
-									</thead>
-									<tbody>
-										{% for dados in site.obter_frequencia_com_maior_similaridade()
-										%}
-										<tr role="row" class="odd">
-											<td><a href="/verificar/palavra/{{ palavra_chave }}/{{ dados[0] }}">{{ dados[0] }}</a></td>
-											<td>{{ dados[1] }}</td>
-											<td>{{ dados[2] }}</td>
-										</tr>
-										{% endfor %}
-									</tbody>
-								</table>
-
-							</div>
-						</li>
-
-					</ul>
-				</div>
-			</div>
-			{% endfor %}
-			<!-- FIM DO BLOCO -->
-			<div class="col s12 m12">
-				<div class="icon-block">
-
-					<ul class="collapsible">
-						<li>
-							<div class="collapsible-header">
-								<i class="material-icons Small">book</i> <b>{{ palavra_chave
-									}}</b> <span class="new badge">1</span>
-							</div>
-							<div class="collapsible-body">
-
-								<div class="row">
-									<div class="col s12">
-										<div class="card blue-grey darken-1">
-											<div class="card-content white-text">
-												<span class="card-title">Setenças importantes</span>
-												<p>
-													Abaixo são mostrada sentenças importantes, que tem alta
-													similaridade semantica com a palavra chave <b>{{
-														palavra_chave }}</b>
-												</p>
-												<p>São ideias de frases, na qual você pode usar, para
-													que os buscadores compreenda melhor sobre o assunto do seu
-													texto</p>
-											</div>
-										</div>
-									</div>
-								</div>
-
-								<table class="striped">
-									<tbody>
-
-										{% for similar in similares %}
-										<tr role="row" class="odd">
-											<td>{{ similar[0] }}</td>
-											<td>{{ similar[1] }}</td>
-										</tr>
-										{% endfor %}
-									</tbody>
-								</table>
-							</div>
-						</li>
-					</ul>
-				</div>
-			</div>
-			<!-- INICIO BLOCO -->
-			<div class="col s12 m12">
-				<div class="icon-block">
-
-					<ul class="collapsible">
-						<li>
-							<div class="collapsible-header">
-								<i class="material-icons Small">book</i> <b>TEMAS
-									IMPORTANTES</b> <span class="new badge">1</span>
-							</div>
-							<div class="collapsible-body">
-
-								<div class="row">
-									<div class="col s12">
-										<div class="card blue-grey darken-1">
-											<div class="card-content white-text">
-												<span class="card-title">Sub titulos importantes</span>
-												<p>Abaixo é mostrado sobre quais temas você deve falar
-													para essa palavra chave {{ palavra_chave }} Esse temas
-													tambem devem ser os titulos H2 no seu texto.</p>
-											</div>
-										</div>
-									</div>
-								</div>
-
-								<table class="striped">
-									<tbody>
-
-										{% for tema in temas %}
-										<tr role="row" class="odd">
-											<td><a href="/verificar/palavra/{{ palavra_chave }}/{{ tema[0] }}">{{ tema[0] }}</a></td>
-											<td>{{ tema[1] }}</td>
-										</tr>
-										{% endfor %}
-									</tbody>
-								</table>
-							</div>
-						</li>
-					</ul>
-				</div>
-			</div>
-			<!-- FIM DO BLOCO -->
-
+<div class="section">
+	<!--   Icon Section   -->
+	<div class="row">
+		<div class="col s12 m12">
+			<ul class="collapsible">
+				<li>
+					<div class="collapsible-header">
+						<i class="material-icons Medium">assessment</i> Informações Gerais
+					</div>
+					<div class="collapsible-body">
+						<table class="responsive-table centered striped">
+							<thead>
+								<tr role="row">
+									<th>Densidade média</th>
+									<th>Distancia média</th>
+									<th>Quantidade de palavras</th>
+									<th>Similaridade</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr role="row" class="odd">
+									<td>{{ densidade_media_de_palavra_chave }}</td>
+									<td>{{ distancia_media_palavra_chave }}</td>
+									<td>{{ quantidade_media_palavras_para_texto }}</td>
+									<td>{{ similaridade_media_documento }}</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</li>
+			</ul>
 		</div>
-
+		<!-- BLOCO DE CONCORRENTES -->
+		{% for site in sites %}
+		<div class="col s12 m4">
+			<!-- <div class="icon-block"> -->
+				<ul class="collapsible">
+					<li>
+						<div class="collapsible-header"><h6> {{
+							site.obter_titulo_h1() }} </h6> {{ site.url }} distancia media : {{
+							site.obter_distancia_media_palavra_chave() }} similaridade : {{
+							site.obter_similaridade_geral_do_texto() }} total de palavras :
+							{{ site.obter_total_de_palavras() }} Densidade da chave : {{
+							site.obter_densidade_da_palavra_chave() }}</div>
+						<div class="collapsible-body">
+							<table class="responsive-table centered">
+								<thead>
+									<tr role="row">
+										<th>Palavra</th>
+										<th>Frequencia</th>
+										<th>Similaridade</th>
+									</tr>
+								</thead>
+								<tbody>
+									{% for dados in site.obter_frequencia_com_maior_similaridade()
+									%}
+									<tr role="row" class="odd">
+										<td><a
+											href="/verificar/palavra/{{ palavra_chave }}/{{ dados[0] }}">{{
+												dados[0] }}</a></td>
+										<td>{{ dados[1] }}</td>
+										<td>{{ dados[2] }}</td>
+									</tr>
+									{% endfor %}
+								</tbody>
+							</table>
+						</div>
+					</li>
+				</ul>
+			<!-- </div> -->
+		</div>
+		{% endfor %}
+		<!-- FIM DO BLOCO -->
+		<div class="col s12 m12">
+			<ul class="collapsible">
+				<li>
+					<div class="collapsible-header">
+						<i class="material-icons Small">book</i> <b>{{ palavra_chave
+							}}</b>
+					</div>
+					<div class="collapsible-body">
+						<div class="row">
+							<div class="col s12">
+								<div class="card blue-grey darken-1">
+									<div class="card-content white-text">
+										<span class="card-title">Setenças importantes</span>
+										<p>
+											Abaixo são mostrada sentenças importantes, que tem alta
+											similaridade semantica com a palavra chave <b> {{
+												palavra_chave }} </b>
+										</p>
+										<p>São ideias de frases, na qual você pode usar, para que
+											os buscadores compreenda melhor sobre o assunto do seu texto</p>
+									</div>
+								</div>
+							</div>
+						</div>
+						<table class="striped">
+							<tbody>
+								{% for similar in similares %}
+								<tr role="row" class="odd">
+									<td>{{ similar[0] }}</td>
+									<td>{{ similar[1] }}</td>
+								</tr>
+								{% endfor %}
+							</tbody>
+						</table>
+					</div>
+				</li>
+			</ul>
+		</div>
+		<!-- INICIO BLOCO -->
+		<div class="col s12 m12">
+			<ul class="collapsible">
+				<li>
+					<div class="collapsible-header">
+						<i class="material-icons Small">book</i> <b>TEMAS IMPORTANTES</b>
+					</div>
+					<div class="collapsible-body">
+						<div class="row">
+							<div class="col s12">
+								<div class="card blue-grey darken-1">
+									<div class="card-content white-text">
+										<span class="card-title">Sub titulos importantes</span>
+										<p>Abaixo é mostrado sobre quais temas você deve falar
+											para essa palavra chave {{ palavra_chave }} Esse temas tambem
+											devem ser os titulos H2 no seu texto.</p>
+									</div>
+								</div>
+							</div>
+						</div>
+						<table class="striped">
+							<tbody>
+								{% for tema in temas %}
+								<tr role="row" class="odd">
+									<td><a
+										href="/verificar/palavra/{{ palavra_chave }}/{{ tema[0] }}">{{
+											tema[0] }}</a></td>
+									<td>{{ tema[1] }}</td>
+								</tr>
+								{% endfor %}
+							</tbody>
+						</table>
+					</div>
+				</li>
+			</ul>
+		</div>
+		<!-- FIM DO BLOCO -->
 	</div>
-	<br> <br>
 </div>
-
 {% endblock %}

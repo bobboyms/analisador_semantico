@@ -5,7 +5,6 @@ encoding//app/regras_de_negocio/__init__.py=utf-8
 encoding//app/templates/analisar_texto.html=UTF-8
 encoding//app/templates/analise.html=UTF-8
 encoding//app/templates/analise_especifica_palavra.html=UTF-8
-encoding//app/templates/menu.html=UTF-8
 encoding//app/templates/principal.html=UTF-8
 encoding//teste/__init__.py=utf-8
 encoding//teste/teste.py=utf-8

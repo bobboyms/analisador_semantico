@@ -17,25 +17,28 @@
 </head>
 
 <body>
-
-	<!-- -->
-	<div class="section no-pad-bot" id="index-banner">
-
-	{% block principal %} 
-	{% endblock %}
-
-	{% block analise %} 
-	{% endblock %}
+<div class="navbar-fixed">
+	<nav class="white" role="navigation">
+		<div class="nav-wrapper container">
+			<a href="/" class="brand-logo"><img
+				src="{{ url_for('static',filename='img/logo-divergente.png') }}"
+				alt="some text" width=200 height=50></a>
+			<ul class="right hide-on-med-and-down blue-grey darken-4">
+				<li><a href="/analisar/texto/">analise de texto</a></li>
+			</ul>
+		</div>
+	</nav>
+	</div>
 	
-	{% block analise_especifica %} 
-	{% endblock %}
-	
-	{% block editor %} 
-	{% endblock %}
+	<div class="content">
+		<!-- <div class="section no-pad-bot" id="index-banner"> -->
 
+		{% block principal %} {% endblock %} {% block analise %} {% endblock
+		%} {% block analise_especifica %} {% endblock %} {% block editor %} {%
+		endblock %}
 
+	</div>
 	<footer class="page-footer orange">
-
 		<div class="footer-copyright">
 			<div class="container">
 				:) <a class="orange-text text-lighten-3"
