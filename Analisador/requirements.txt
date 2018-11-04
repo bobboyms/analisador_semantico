@@ -1,4 +1,5 @@
 spacy==2.0.12
+https://github.com/explosion/spacy-models/releases/download/pt_core_news_sm-2.1.0a0/pt_core_news_sm-2.1.0a0.tar.gz
 beautifulsoup4==4.6.3
 Flask==1.0.2
 Flask-Login==0.4.1
@@ -13,4 +14,3 @@ nltk==3.3
 SQLAlchemy==1.2.12
 urllib3==1.23
 WTForms==2.2.1
-https://github.com/explosion/spacy-models/releases/download/pt_core_news_sm-2.1.0a0/pt_core_news_sm-2.1.0a0.tar.gz
